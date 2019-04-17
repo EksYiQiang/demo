@@ -1,0 +1,116 @@
+﻿
+
+1 forms
+2 cookie session
+3 中间件
+4 modelform
+5 Ajax
+6 admin
+7 jsonp
+
+CRM（两周）
+   --- 自定义增删改查组件
+   --- 权限管理
+   --- crm业务逻辑
+   
+路飞项目（前后端分离，三周）
+  --- vue
+  --- rest
+  --- 路飞逻辑
+
+flask（两周）
+爬虫（一周）
+linux（一周）  
+
+  
+ 
+   
+ 
+
+ 
+admin： Django的后台数据管理的web版本
+
+
+        针对Food表，url：
+		    http://127.0.0.1:8000/admin/app02/food/
+			http://127.0.0.1:8000/admin/app02/food/add/
+			http://127.0.0.1:8000/admin/app02/food/1/change/
+			http://127.0.0.1:8000/admin/app02/food/2/delete/
+			
+			
+		admin.ModelAdmin：默认配置类
+            def __str__(self):
+				return 字符串
+				
+				
+				
+解析admin的源码：
+        
+        1 启动
+		   django启动后，会加载settings中的install_app
+		   admin.py:
+		        from django.contrib.admin.sites import AdminSite, site
+				autodiscover_modules('admin', register_to=site):加载每一个app下的admin.py文件
+		
+		2 注册
+		
+		  admin.site.register(Author)
+		  class BookConfig(admin.ModelAdmin):
+		       pass
+		  admin.site.register(Book,BookConfig)
+		  
+		  
+		  源码：
+		      admin.py---sites.py---->
+			  class AdminSite(object):
+			  
+			      def __init__(self):
+						self._registry = {} 
+			  
+			      def register(self,model,admin_class=None):
+				       if not admin_class:
+							admin_class = ModelAdmin
+							
+							
+					   self._registry[model] = admin_class(model, self)		
+			  
+			  
+			  site = AdminSite()
+			       
+		  
+		  
+		  
+		3 设计url
+		
+		
+		
+单例模式：
+		
+class Settings():
+
+    def __init__():
+         self.app_namse=["app01","app02"]
+
+		
+s=Settings()
+
+s.app_namse.append("app03")
+
+
+实现单例模式：
+
+    基于__new__
+	基于模块
+      
+
+
+
+
+
+
+
+
+
+
+
+
